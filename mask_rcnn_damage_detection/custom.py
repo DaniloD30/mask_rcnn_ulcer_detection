@@ -176,7 +176,7 @@ class CustomDataset(utils.Dataset):
             super(self.__class__, self).image_reference(image_id)
 
 
-def train(model, dataset_dir):
+def train(model, dataset_dir, configg):
     """Train the model."""
     # Training dataset.
     dataset_train = CustomDataset()
@@ -194,7 +194,7 @@ def train(model, dataset_dir):
     # no need to train all layers, just the heads should do it.
     print("Training network heads")
     model.train(dataset_train, dataset_val,
-                learning_rate=config.LEARNING_RATE,
+                learning_rate=configg,
                 epochs=10,
                 layers='heads')
 
