@@ -66,13 +66,13 @@ class CustomConfig(Config):
 
     # We use a GPU with 12GB memory, which can fit two images.
     # Adjust down if you use a smaller GPU.
-    IMAGES_PER_GPU = 2
+    IMAGES_PER_GPU = 1
 
     # Number of classes (including background)
     NUM_CLASSES = 1 + 1  # Background + toy
 
     # Number of training steps per epoch
-    STEPS_PER_EPOCH = 100
+    STEPS_PER_EPOCH = 256
 
     # Skip detections with < 90% confidence
     DETECTION_MIN_CONFIDENCE = 0.9
@@ -195,7 +195,7 @@ def train(model, dataset_dir, configg):
     print("Training network heads")
     model.train(dataset_train, dataset_val,
                 learning_rate=configg,
-                epochs=10,
+                epochs=150,
                 layers='heads')
 
 
